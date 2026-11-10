@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CARE LINK — Every Patient. Every Second.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f9;--pn:#fff;--ink:#0f2236;--mut:#5b6e82;--line:#e0e7ee;--nav:#0b1a2b;--navl:#1a2e45;--tq:#1fb5ad;--bl:#e8f1f7;--g:#1f9d6a;--y:#e9a820;--r:#e03e45;--x:#8a97a6;padding-top:env(safe-area-inset-top,0px);box-sizing:border-box;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08131f;--pn:#0f2236;--ink:#e5edf5;--mut:#93a6b9;--line:#1f3550;--bl:#14304a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#08131f;--pn:#0f2236;--ink:#e5edf5;--mut:#93a6b9;--line:#1f3550;--bl:#14304a;color-scheme:dark}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--ink);font:400 13px/1.45 Inter,system-ui,sans-serif;overflow:hidden}
+button{font:inherit;cursor:pointer}:focus-visible{outline:2px solid var(--tq);outline-offset:1px}
+#app{display:grid;grid-template-columns:208px 1fr;grid-template-rows:48px 1fr;height:100%;padding-bottom:env(safe-area-inset-bottom,0px)}
+aside{grid-row:1/3;background:var(--nav);color:#b6c4d3;display:flex;flex-direction:column;padding:12px 8px}
+.lg{color:#fff;font-weight:700;letter-spacing:.04em;padding:6px 10px 16px;font-size:14px}.lg i{color:var(--tq);font-style:normal}
+aside a{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:6px;color:inherit;text-decoration:none;font-weight:500;margin-bottom:2px}aside a:hover{background:var(--navl)}aside a.on{background:var(--navl);color:#fff;box-shadow:inset 2px 0 var(--tq)}aside a em{font-style:normal;width:16px;text-align:center}
+.bt{margin-top:auto;border-top:1px solid var(--navl);padding:12px 6px 0;font-size:12px}.dm{display:inline-block;background:var(--y);color:#3a2800;font-weight:700;font-size:10px;padding:2px 7px;border-radius:3px;margin-bottom:8px}.bt b{color:#fff;display:block}
+header{display:flex;align-items:center;gap:12px;padding:0 16px;background:var(--pn);border-bottom:1px solid var(--line)}header .dp{font-weight:600}header .dp span{color:var(--mut);font-weight:400}
+#q{margin-left:auto;width:240px;max-width:30vw;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.bell{position:relative;background:none;border:0;color:var(--ink);font-size:15px}.bell b{position:absolute;top:-4px;right:-6px;background:var(--r);color:#fff;border-radius:8px;font-size:10px;padding:0 4px}
+.tm{color:var(--mut);font-variant-numeric:tabular-nums;white-space:nowrap}.pf{background:var(--navl);color:#fff;border:0;border-radius:50%;width:28px;height:28px;font-weight:600;font-size:11px}
+main{overflow:auto;padding:16px;min-width:0}.pg{display:none}.pg.on{display:block}
+h2{font-size:16px;margin:0 0 12px;font-weight:700}h3{font-size:12px;margin:0 0 8px;color:var(--mut);font-weight:600}
+.btn{border:1px solid var(--line);background:var(--pn);color:var(--ink);border-radius:6px;padding:5px 10px;font-weight:500}.btn.p{background:var(--tq);border-color:var(--tq);color:#03302d}.btn.d{background:var(--r);border-color:var(--r);color:#fff}.btn:hover{border-color:var(--tq)}
+.panel{background:var(--pn);border:1px solid var(--line);border-radius:8px;padding:12px}
+#ban{display:none;background:var(--r);color:#fff;border-radius:6px;padding:9px 12px;margin-bottom:12px;font-weight:600;align-items:center;gap:10px}#ban.on{display:flex;animation:bl 1.1s infinite}#ban span{flex:1}#ban .btn{background:transparent;color:#fff;border-color:#fff}
+@keyframes bl{50%{opacity:.7}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+.st{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}.st div{background:var(--pn);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:6px;padding:8px 12px;color:var(--mut);font-size:11px}.st b{display:block;font-size:22px;color:var(--ink);font-weight:600;line-height:1.2}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}.bar .sp{flex:1}.bar select{padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--pn);color:var(--ink)}.lb{color:var(--mut);font-size:11px;font-weight:600}
+.gd{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+.pc{text-align:left;background:var(--pn);color:var(--ink);border:1px solid var(--line);border-left:3px solid var(--g);border-radius:6px;padding:8px 10px}.pc:hover{border-color:var(--tq)}
+.pc.y{border-left-color:var(--y)}.pc.r{border-left-color:var(--r);background:rgba(224,62,69,.09);border-color:var(--r)}.pc.r:not(.ak){animation:bl 1s infinite}.pc.x{border-left-color:var(--x);opacity:.75}
+.pc .t{display:flex;justify-content:space-between;font-weight:600}.pc .t span+span{color:var(--mut);font-weight:400}.pc .v{display:flex;gap:10px;color:var(--mut);font-size:11px;align-items:baseline}.pc .v b{font-size:17px;color:var(--ink);font-weight:600}
+.pc svg{width:100%;height:24px;display:block;margin:2px 0}.pc .f{display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}.pc .s{font-weight:600}.s.g{color:var(--g)}.s.y{color:#b07a06}.s.r{color:var(--r)}.s.x{color:var(--mut)}
+.tw{overflow:auto;background:var(--pn);border:1px solid var(--line);border-radius:8px}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:7px 12px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600;font-size:11px;background:var(--bg)}tbody tr.cl{cursor:pointer}tbody tr.cl:hover{background:var(--bl)}tr.cr td{background:rgba(224,62,69,.08)}
+.dt{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.g.dt{background:var(--g)}.y.dt{background:var(--y)}.r.dt{background:var(--r)}.x.dt{background:var(--x)}
+.pill{border-radius:3px;padding:1px 7px;font-size:10px;font-weight:700;color:#fff;background:var(--r)}.pill.a{background:var(--g)}.pill.m{background:var(--y);color:#3a2800}
+.tabs{display:flex;gap:4px;margin-bottom:10px}.tabs button{border:0;background:none;color:var(--mut);padding:5px 10px;border-radius:6px;font-weight:600}.tabs button.on{background:var(--bl);color:var(--ink)}
+.an{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(max-width:1000px){.an{grid-template-columns:1fr}}
+.an svg,.dp2 svg{width:100%;height:120px;display:block;background:var(--bg);border-radius:4px}.stk{display:flex;height:22px;border-radius:4px;overflow:hidden;margin:6px 0}.stk i{display:block}.hb{display:flex;align-items:center;gap:8px;margin:5px 0}.hb span:first-child{width:140px;color:var(--mut)}.hb i{display:block;height:10px;background:var(--tq);border-radius:2px}
+.set{max-width:560px;display:grid;gap:12px}.set label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}.set select,.set input[type=text]{padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.ds{margin-top:14px;font-size:11px;color:var(--mut);border-top:1px solid var(--line);padding-top:10px}
+dialog{margin:0 0 0 auto;height:100%;max-height:100%;width:min(460px,100vw);border:0;border-left:1px solid var(--line);background:var(--pn);color:var(--ink);padding:18px;overflow:auto}dialog::backdrop{background:rgba(5,15,30,.45)}
+dialog svg{width:100%;height:90px;background:var(--bg);border-radius:4px}.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.kv div{border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:var(--mut)}.kv b{display:block;font-size:20px;color:var(--ink)}
+.compact .pc{padding:5px 8px}.compact td,.compact th{padding:4px 10px}
+a.btn{text-decoration:none;display:inline-block}
+#pub{display:none;height:100%;overflow:auto;background:var(--pn)}.pn{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:18px;padding:0 24px;height:54px;background:var(--nav);color:#c8d4e0}.pn .lg{padding:0;margin-right:auto}.pn a{color:inherit;text-decoration:none;font-weight:500}.pn a.on{color:#fff;box-shadow:0 2px var(--tq)}.pn a.btn{color:#03302d}
+.pw{max-width:1040px;margin:0 auto;padding:48px 24px}.pw h1{font-size:clamp(30px,5vw,48px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}.pw h2{font-size:22px;margin:34px 0 10px}.pw p{max-width:64ch;color:var(--mut);font-size:15px;line-height:1.6}
+.hs{display:flex;gap:28px;flex-wrap:wrap;margin:26px 0;padding:14px 0;border-block:1px solid var(--line);color:var(--mut)}.hs b{display:block;font-size:28px;font-weight:600;color:var(--ink)}
+.rw{display:grid;grid-template-columns:220px 1fr;gap:8px 24px;padding:12px 0;border-top:1px solid var(--line)}.rw b{font-size:14px}.rw span{color:var(--mut);font-size:14px}
+.fl{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.fl button{flex:1;min-width:120px;border:1px solid var(--line);background:var(--pn);color:var(--ink);padding:10px;border-radius:6px;font-weight:600}.fl button.on{border-color:var(--tq);background:var(--bl)}
+.fm{display:grid;gap:12px;max-width:520px}.fm label{display:grid;gap:4px;font-weight:600}.fm input,.fm select,.fm textarea{padding:9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}.fm input:invalid:not(:placeholder-shown){border-color:var(--r)}#ok{display:none;background:var(--g);color:#fff;padding:10px;border-radius:6px}
+.pf2{background:var(--nav);color:#8fa3b8;padding:20px 24px;font-size:12px}
+.ft{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}.ft.un{background:var(--bl)}.ft span{flex:1}
+.hero{background:var(--nav);color:#fff;border-bottom:3px solid var(--tq)}.hero .pw{padding-top:64px;padding-bottom:64px}.hg{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}@media(max-width:860px){.hg{grid-template-columns:1fr}}
+.hero h1{color:#fff;font-size:clamp(34px,5.5vw,56px)}.hero p{color:#b6c4d3}.eb{display:block;font-size:11px;letter-spacing:.14em;font-weight:600;color:var(--tq);margin-bottom:14px}
+.hero .btn:not(.p){background:transparent;color:#fff;border-color:#3b5572}
+.mon{background:#0f2236;border:1px solid #274260;border-radius:8px;padding:14px;box-shadow:0 20px 40px rgba(0,0,0,.35)}.mh{display:flex;justify-content:space-between;font-size:11px;color:#8fa3b8;margin-bottom:10px}
+.mg{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}.mg span{aspect-ratio:1.5;border-radius:3px;background:var(--g)}.mg span.y{background:var(--y)}.mg span.r{background:var(--r);animation:bl 1s infinite}.mg span.x{background:var(--x)}.mon svg{width:100%;height:50px;display:block;margin-top:12px}
+.pn{border-bottom:1px solid #1a2e45}.rw b::before{content:"";display:inline-block;width:8px;height:8px;background:var(--tq);border-radius:2px;margin-right:10px}.pw h2{border-top:0}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes dr{to{stroke-dashoffset:-100}}@keyframes pu{0%{box-shadow:0 0 0 0 rgba(31,181,173,.6)}100%{box-shadow:0 0 0 10px rgba(31,181,173,0)}}@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:none}}
+#intro{display:none;position:fixed;inset:0;z-index:50;background:var(--nav);align-items:center;justify-content:center;text-align:center;opacity:1;transition:opacity .6s}#intro.on,#intro.out{display:flex}#intro.out{opacity:0;pointer-events:none}
+#il span{display:block;font-size:clamp(30px,6.5vw,64px);font-weight:700;color:#fff;letter-spacing:-.02em;animation:fu .7s both}#intro.al #il span{color:#ff7a7e}#il .lgo{letter-spacing:.06em}#il .lgo i{color:var(--tq);font-style:normal}
+#il small{display:block;color:#8fa3b8;margin-top:14px;font-size:15px;letter-spacing:.12em;animation:fu .8s .3s both}
+#intro svg{position:absolute;left:0;right:0;bottom:18%;width:100%;height:auto;max-height:120px}#intro polyline{fill:none;stroke:var(--tq);stroke-width:2.5;stroke-dasharray:35 65;animation:dr 2.2s linear infinite}#intro.al polyline{stroke:var(--r)}
+#sk{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;background:transparent;color:#b6c4d3;border:1px solid #33506e;border-radius:6px;padding:6px 12px}
+.pl{stroke-dasharray:35 65;animation:dr 2s linear infinite}.mg span{transition:background .6s;animation:pop .4s both}
+.eb::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tq);margin-right:8px;animation:pu 1.6s infinite}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
+#pub>div[id^=u-]{animation:fu .45s both}.pg.on{animation:fu .3s both}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}#intro{display:none!important}}
+.lgs{border:1px solid #33506e;background:transparent;color:inherit;border-radius:6px;padding:4px 6px;font:inherit}header .lgs{border-color:var(--line);color:var(--ink);background:var(--bg)}.pn .lgs option,header .lgs option{color:#0f2236}
+@media(max-width:700px){.pn a.h{display:none}.rw{grid-template-columns:1fr}}
+@media(max-width:900px){#app{grid-template-columns:56px 1fr}.lg{font-size:0;padding:6px 0 14px}.lg i{font-size:14px;display:block;text-align:center}aside a span,.bt{display:none}aside a{justify-content:center}.st{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){#app{grid-template-columns:1fr;grid-template-rows:48px 1fr 50px}aside{grid-row:3;flex-direction:row;padding:4px;justify-content:space-around}.lg{display:none}aside a{margin:0}#q{width:120px}.tm{display:none}.gd{grid-template-columns:repeat(2,1fr)}.st{grid-template-columns:repeat(2,1fr)}main{padding:10px}}
+</style></head><body>
+<div id="intro" role="dialog" aria-label="CARE LINK intro"><button id="sk">Skip</button><div id="il"></div><svg viewBox="0 0 1000 100" aria-hidden="true"><polyline pathLength="100" points="0,50 300,50 330,50 345,15 360,85 375,50 600,50 630,50 645,15 660,85 675,50 1000,50"/></svg></div>
+<div id="pub"><nav class="pn"><a class="lg" href="#home">CARE<i>LINK</i></a><a class="h" id="q-home" href="#home">Home</a><a class="h" id="q-how" href="#how">How It Works</a><a class="h" id="q-tech" href="#tech">Technology</a><a class="h" id="q-contact" href="#contact">Contact</a><select id="lg" class="lgs" aria-label="Language"><option value="en">EN</option><option value="ru">RU</option><option value="kk">ҚАЗ</option></select><a class="btn p" href="#overview">Open Dashboard</a></nav>
+<div id="u-home"><div class="hero"><div class="pw hg"><div><span class="eb">HOSPITAL MONITORING PLATFORM</span><h1>Every Patient. Every Second.</h1><p>CARE LINK helps hospital teams watch many patients from one screen, notice potentially risky changes in vital signs, and organize a faster response.</p><div class="bar"><a class="btn p" href="#overview">Open live dashboard</a><a class="btn" href="#how">How it works</a><a class="btn" href="#contact">Request a pilot</a><button class="btn" id="rp">▶ Replay intro</button></div></div>
+<div class="mon" aria-hidden="true"><div class="mh"><span>General Ward</span><span>LIVE · synthetic data</span></div><div class="mg" id="mg"></div><svg viewBox="0 0 300 50"><polyline class="pl" pathLength="100" fill="none" stroke="#1fb5ad" stroke-width="2" points="0,28 50,28 58,6 66,44 74,28 130,28 138,6 146,44 154,28 210,28 218,6 226,44 234,28 300,28"/></svg></div></div></div>
+<div class="pw" style="padding-top:8px"><div class="hs" id="hs"></div>
+<h2>What staff get</h2>
+<div class="rw"><b>One screen, 40 patients</b><span>Heart rate, SpO₂, movement and device status for every patient, with colors for stable, attention, critical and offline.</span></div>
+<div class="rw"><b>Alerts with a reason</b><span>A visual banner and a sound show the patient, the room and why the alert fired. The nurse acknowledges it, and it stays in the history.</span></div>
+<div class="rw"><b>Patient profiles</b><span>Heart rate and SpO₂ charts, a movement timeline, device status and alert history for each patient.</span></div>
+<div class="rw"><b>Device overview</b><span>See each wearable, its connection, battery and last synchronization.</span></div>
+<div class="rw"><b>Try it now</b><span>The dashboard runs a live simulation. Start a scenario, such as a possible fall, and watch every page update.</span></div></div></div>
+<div id="u-how"><div class="pw"><h1>How It Works</h1><p>Four steps from the patient’s wrist to the nurse’s screen.</p>
+<div class="rw"><b>1. Patient wears a device</b><span>A connected wearable is assigned to the patient.</span></div><div class="rw"><b>2. Data is collected</b><span>Heart rate, SpO₂ and movement.</span></div><div class="rw"><b>3. CARE LINK analyzes</b><span>The platform checks incoming data against demo thresholds and motion patterns.</span></div><div class="rw"><b>4. Staff are alerted</b><span>Visual and audio alerts appear for potentially dangerous changes.</span></div>
+<h2>System architecture</h2><div class="fl" id="fl"></div><p id="fd"></p><p>Glucose monitoring may be added in the future through compatible CGM devices.</p><a class="btn p" href="#overview">See it in the dashboard</a></div></div>
+<div id="u-tech"><div class="pw"><h1>Technology</h1><p>What sits behind the demo.</p>
+<div class="rw"><b>Wearable sensor integration</b><span>Heart rate, SpO₂ and motion sensors.</span></div><div class="rw"><b>Real-time visualization</b><span>Live trend charts for each patient and for the whole ward.</span></div><div class="rw"><b>AI-assisted anomaly detection</b><span>Demo rules that flag unusual patterns. Not a validated diagnosis.</span></div><div class="rw"><b>Movement and fall-event monitoring</b><span>Motion data is shown as an activity timeline.</span></div><div class="rw"><b>Centralized patient management</b><span>Search, filter and sort all patients in one list.</span></div><div class="rw"><b>Historical data tracking</b><span>History for vitals, alerts and device connectivity.</span></div>
+<p style="margin-top:20px">This is a prototype. Real use would need medical validation, regulatory compliance, device integration and clinical testing.</p></div></div>
+<div id="u-contact"><div class="pw"><h1>Request a pilot</h1><p>Tell us about your hospital. This form is a demo: nothing is sent.</p>
+<form class="fm" id="cf"><label>Full name<input required placeholder=" " autocomplete="name"></label><label>Hospital / organization<input required placeholder=" " autocomplete="organization"></label><label>Professional role<input required placeholder=" "></label><label>Work email<input required type="email" placeholder=" " autocomplete="email"></label><label>Phone<input type="tel" pattern="[0-9+() -]{7,}" placeholder=" " autocomplete="tel"></label><label>Message<textarea rows="3"></textarea></label><button class="btn p" type="submit">Request a Pilot</button><div id="ok">Thank you! Your demo request was recorded on this page only.</div></form></div></div>
+<div class="pf2">CARE LINK is a demonstration prototype using synthetic patient data. It is not intended for clinical use, medical diagnosis, or emergency response. Demonstration thresholds and scenarios are illustrative only.</div></div>
+<div id="app">
+<aside><div class="lg">CARE<i>LINK</i></div>
+<a href="#overview" id="n-overview"><em>▦</em><span>Dashboard</span></a><a href="#monitoring" id="n-monitoring"><em>♡</em><span>Patient Monitoring</span></a><a href="#alerts" id="n-alerts"><em>⚠</em><span>Alert Center</span></a><a href="#analytics" id="n-analytics"><em>▤</em><span>Analytics</span></a><a href="#devices" id="n-devices"><em>◉</em><span>Devices</span></a><a href="#notifications" id="n-notifications"><em>🔔</em><span>Notifications</span></a><a href="#settings" id="n-settings"><em>⚙</em><span>Settings</span></a><a href="#home"><em>↩</em><span>Website</span></a>
+<div class="bt"><span class="dm">DEMO MODE</span><b id="un">Nurse Administrator</b>Synthetic data</div></aside>
+<header><div class="dp"><b id="dn">General Ward</b> <span>· Hospital Monitoring Center</span></div><input id="q" type="search" placeholder="Search patient ID or room" aria-label="Search"><select id="lg2" class="lgs" aria-label="Language"><option value="en">EN</option><option value="ru">RU</option><option value="kk">ҚАЗ</option></select><button class="bell" id="bell" aria-label="Notifications">🔔<b id="bn">0</b></button><span class="tm" id="clk"></span><button class="pf" id="pf" aria-label="Profile">NA</button></header>
+<main>
+<div id="ban" role="alert"></div>
+<section class="pg" id="p-overview">
+<h2>Dashboard</h2><div class="st" id="st"></div>
+<div class="bar"><span class="lb">SIMULATION</span><button class="btn p" id="bs">Start</button><button class="btn" id="bp">Pause</button><button class="btn" id="br">Reset</button><select id="sc" aria-label="Scenario"><option value="hr">Elevated Heart Rate</option><option value="spo2">Low SpO₂</option><option value="fall">Possible Fall Event</option><option value="off">Device Disconnected</option></select><button class="btn d" id="bt">Trigger Demo Alert</button><span class="sp"></span><select id="fs" aria-label="Filter"><option value="">All statuses</option><option value="g">Stable</option><option value="y">Attention</option><option value="r">Critical</option><option value="x">Offline</option></select><select id="so" aria-label="Sort"><option value="">Sort: ID</option><option value="h">Heart rate ↓</option><option value="o">SpO₂ ↑</option></select><button class="btn" id="vw">List view</button></div>
+<div class="gd" id="gd"></div><div class="tw" id="lt" style="display:none"></div>
+</section>
+<section class="pg" id="p-monitoring"><h2>Patient Monitoring</h2><div class="tw" id="mt"></div></section>
+<section class="pg" id="p-alerts"><h2>Alert Center</h2><div class="tabs" id="tb"><button data-f="" class="on">All</button><button data-f="a">Active</button><button data-f="k">Acknowledged</button></div><div class="tw"><table><thead><tr><th>Time</th><th>Priority</th><th>Patient</th><th>Room</th><th>Category</th><th>Reason</th><th>Status</th><th></th></tr></thead><tbody id="at"></tbody></table></div></section>
+<section class="pg" id="p-analytics"><h2>Analytics</h2><div class="an" id="an"></div></section>
+<section class="pg" id="p-devices"><h2>Device Management</h2><div class="bar"><span class="lb" id="dsm"></span><span class="sp"></span><button class="btn" id="dsy">Sync all devices</button></div><div class="tw" id="dt"></div></section>
+<section class="pg" id="p-notifications"><h2>Notifications</h2><div class="bar"><span class="lb" id="nsm"></span><span class="sp"></span><button class="btn" id="nra">Mark all as read</button></div><div class="tw" id="nl"></div></section>
+<section class="pg" id="p-patient"><div id="pp"></div></section>
+<section class="pg" id="p-settings"><h2>Settings</h2><div class="set panel">
+<h3>User profile</h3><label>Role<input type="text" value="Charge nurse" disabled></label><label>Department<select id="sd"><option>General Ward</option><option>ICU</option><option>Cardiology</option></select></label><label>Account<button class="btn" id="so2">Sign out (demo)</button></label><label>Display name<input type="text" id="sn" value="Nurse Administrator"></label>
+<h3>Notifications</h3><label>Show alert banner<input type="checkbox" id="sb" checked></label>
+<h3>Sound</h3><label>Alert sound<input type="checkbox" id="ss" checked></label>
+<h3>Display</h3><label>Theme<select id="sth"><option value="">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><label>Compact density<input type="checkbox" id="scd"></label>
+<h3>Demo</h3><label>Update interval<select id="si"><option value="1000">1 s</option><option value="2000" selected>2 s</option><option value="4000">4 s</option></select></label><label>Auto-trigger alerts every 45 s<input type="checkbox" id="sa"></label></div></section>
+<div class="ds">DEMO MODE · CARE LINK uses synthetic data only. It is not validated for clinical use, diagnosis, or emergency response. Thresholds and scenarios are illustrative.</div>
+</main></div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var N=40,H=60,P=[],A=[],NT=[],AH=[],SH=[],OH=[],run=true,sound=true,banOn=true,list=false,open=null,aid=0,ac=null,iv=null,afl='',ar=null;
+var LBL={g:'Stable',y:'Attention',r:'Critical',x:'Offline'},COL={g:'#1f9d6a',y:'#e9a820',r:'#e03e45',x:'#8a97a6'};
+function rnd(a,b){return a+Math.random()*(b-a)}function pid(n){return '#'+('00'+n).slice(-3)}
+function reset(){P=[];A=[];NT=[];AH=[];SH=[];OH=[];aid=0;for(var i=0;i<N;i++){var p={n:i+1,room:100*(1+(i/10|0))+i%10+1,b:rnd(62,84),sp:rnd(96,99),mv:rnd(.1,.5),hh:[],sh:[],mh:[],off:false,sc:null,t:0,rc:0,ak:false,al:null,bat:rnd(35,100),ls:Date.now()};p.hr=p.b;for(var k=0;k<H;k++){p.hh.push(p.hr+rnd(-2,2));p.sh.push(p.sp+rnd(-.4,.4));p.mh.push(rnd(.05,.6))}P.push(p)}
+ var ids=[];while(ids.length<5){var r=Math.floor(Math.random()*N);if(ids.indexOf(r)<0)ids.push(r)}
+ ids.forEach(function(r,k){var q=P[r];if(k%2){q.b=rnd(108,113);q.hr=q.b}else{q.mild=1;q.sp=92.8}for(var j=0;j<H;j++){q.hh[j]=q.hr+rnd(-2,2);q.sh[j]=q.sp+rnd(-.4,.4)}});
+ tick()}
+function status(p){
+ if(p.off){p.why='Device disconnected';return 'x'}
+ if(p.sc=='fall'&&p.t<8){p.why='Possible fall: sudden motion, then no movement';return 'r'}
+ if(p.sp<90){p.why='SpO₂ below demo threshold';return 'r'}
+ if(p.hr>130){p.why='Heart rate above demo threshold';return 'r'}
+ if(p.hr<45){p.why='Heart rate below demo threshold';return 'r'}
+ if(p.sp<94){p.why='SpO₂ trending low';return 'y'}
+ if(p.hr>105){p.why='Heart rate elevated';return 'y'}
+ if(p.hr<52){p.why='Heart rate low';return 'y'}
+ p.why='Within demo range';return 'g'}
+function mvl(p){return p.sc=='fall'&&p.t>=8?'No movement':p.mv>.6?'Active':p.mv>.25?'Light motion':'Resting'}
+function tick(){
+ P.forEach(function(p){
+  if(!p.off){var th=p.b,ts=p.mild?92.6:97.5,tm=rnd(.05,.5);
+   if(p.sc){p.t++;
+    if(p.sc=='hr')th=p.b+62;
+    if(p.sc=='spo2'){ts=86;th=p.b+15}
+    if(p.sc=='fall'){if(p.t<8){th=p.b+30;tm=1}else{th=p.b+12;tm=0}}
+    if(p.sc=='off'&&p.t>=2)p.off=true;
+    if(p.ak&&++p.rc>5){p.sc=null;p.ak=false;p.rc=0;p.al=null}}
+   p.hr+=(th-p.hr)*.3+rnd(-1.5,1.5);p.sp=Math.min(100,p.sp+(ts-p.sp)*.3+rnd(-.3,.3));p.mv+=(tm-p.mv)*.5}
+  else if(p.sc=='off'&&p.ak&&++p.rc>5){p.sc=null;p.off=false;p.ak=false;p.rc=0;p.al=null}
+  else if(!p.sc&&Math.random()<.003)p.off=true;
+  else if(!p.sc&&p.off&&Math.random()<.1){p.off=false;p.al=null}
+  if(!p.off){p.ls=Date.now();p.bat=Math.max(3,p.bat-.02)}
+  p.hh.push(p.hr);p.sh.push(p.sp);p.mh.push(p.mv);if(p.hh.length>H){p.hh.shift();p.sh.shift();p.mh.shift()}
+  p.st=status(p);
+  if((p.st=='r'||(p.st=='x'&&p.sc=='off'))&&!p.al){var a={id:++aid,n:p.n,room:p.room,cat:p.st=='x'?'Device Disconnected':/fall/i.test(p.why)?'Possible Fall':/SpO/.test(p.why)?'Low SpO₂':'Heart Rate',why:p.why,time:new Date().toLocaleTimeString(),ak:false,pr:p.st=='r'?'Critical':'Medium'};A.unshift(a);NT.unshift({id:a.id,n:p.n,t:a.pr+': Patient '+pid(p.n)+' · Room '+p.room+' — '+p.why,time:a.time,rd:false});p.al=a;p.ak=false;beep()}
+  if(p.st=='g'||p.st=='y'){p.al=null;p.ak=false}});
+ var on=P.filter(function(p){return !p.off}),av=function(k){return on.reduce(function(s,p){return s+p[k]},0)/(on.length||1)};
+ AH.push(av('hr'));SH.push(av('sp'));OH.push(on.length/N*100);if(AH.length>H){AH.shift();SH.shift();OH.shift()}
+ render()}
+function line(a,c,lo,hi,w,h){var m=a.slice(-H),s='';for(var i=0;i<m.length;i++)s+=(i/Math.max(1,m.length-1)*w).toFixed(1)+','+Math.max(0,Math.min(h,h-(m[i]-lo)/(hi-lo)*h)).toFixed(1)+' ';return '<polyline fill="none" stroke="'+c+'" stroke-width="1.6" vector-effect="non-scaling-stroke" points="'+s+'"/>'}
+function chart(a,c,lo,hi){return '<svg viewBox="0 0 300 100" preserveAspectRatio="none"><path d="M0 25H300M0 50H300M0 75H300" stroke="currentColor" opacity=".12" fill="none" vector-effect="non-scaling-stroke"/>'+line(a,c,lo,hi,300,100)+'</svg>'}
+function filt(){var q=$('q').value.trim().toLowerCase(),f=$('fs').value,s=$('so').value,L=P.filter(function(p){return (!f||p.st==f)&&(!q||pid(p.n).indexOf(q)>=0||String(p.n)==q||String(p.room).indexOf(q)>=0)});
+ if(s=='h')L.sort(function(a,b){return b.hr-a.hr});if(s=='o')L.sort(function(a,b){return a.sp-b.sp});return L}
+function rows(L){var h='<table><thead><tr><th>Patient</th><th>Room</th><th>Status</th><th>HR</th><th>SpO₂</th><th>Movement</th><th>Device</th><th>Trend</th></tr></thead><tbody>';
+ L.forEach(function(p){h+='<tr class="cl'+(p.st=='r'&&!(p.al&&p.al.ak)?' cr':'')+'" data-i="'+p.n+'"><td>'+pid(p.n)+'</td><td>'+p.room+'</td><td><i class="dt '+p.st+'"></i>'+LBL[p.st]+'</td><td>'+(p.off?'—':Math.round(p.hr))+'</td><td>'+(p.off?'—':Math.round(p.sp)+'%')+'</td><td>'+(p.off?'—':mvl(p))+'</td><td>'+(p.off?'Offline':'Connected')+'</td><td style="width:120px"><svg viewBox="0 0 100 20" preserveAspectRatio="none" style="width:110px;height:18px;display:block">'+(p.off?'':line(p.hh,COL[p.st],40,150,100,20))+'</svg></td></tr>'});return h+'</tbody></table>'}
+function render(){
+ var c={g:0,y:0,r:0,x:0};P.forEach(function(p){c[p.st]++});
+ $('st').innerHTML='<div><b>'+N+'</b>Total patients</div><div style="border-left-color:var(--g)"><b>'+c.g+'</b>Stable</div><div style="border-left-color:var(--y)"><b>'+c.y+'</b>Attention required</div><div style="border-left-color:var(--r)"><b>'+c.r+'</b>Critical alerts</div><div style="border-left-color:var(--x)"><b>'+c.x+'</b>Offline devices</div>';
+ var L=filt(),h='';
+ if(list){$('lt').innerHTML=rows(L);$('gd').style.display='none';$('lt').style.display='block'}else{
+  L.forEach(function(p){h+='<button class="pc '+p.st+(p.al&&p.al.ak?' ak':'')+'" data-i="'+p.n+'" aria-label="Patient '+pid(p.n)+', room '+p.room+', '+LBL[p.st]+'"><div class="t"><span>'+pid(p.n)+'</span><span>Rm '+p.room+'</span></div>'+(p.off?'<div class="v">No data</div>':'<div class="v"><span><b>'+Math.round(p.hr)+'</b> bpm</span><span><b>'+Math.round(p.sp)+'</b>% SpO₂</span></div>')+'<svg viewBox="0 0 100 24" preserveAspectRatio="none">'+(p.off?'':line(p.hh,COL[p.st],40,150,100,24))+'</svg><div class="f"><span class="s '+p.st+'">● '+LBL[p.st]+'</span><span>'+(p.off?'Offline':mvl(p))+'</span></div></button>'});
+  $('gd').innerHTML=h||'<div class="panel">No patients match.</div>';$('gd').style.display='grid';$('lt').style.display='none'}
+ $('mt').innerHTML=rows(filt());
+ var act=A.filter(function(a){return !a.ak});$('bn').textContent=NT.filter(function(x){return !x.rd}).length;
+ var b=$('ban');if(act.length&&banOn){var a=act[0];b.className='on';b.innerHTML='<span>⚠ CRITICAL · Patient '+pid(a.n)+' · Room '+a.room+' — '+a.why+(act.length>1?' (+'+(act.length-1)+' more)':'')+'</span><button class="btn" id="ba">Acknowledge</button>'}else{b.className='';b.textContent=''}
+ var t='';A.filter(function(a){return !afl||(afl=='a'?!a.ak:a.ak)}).forEach(function(a){t+='<tr class="'+(!a.ak&&a.pr=='Critical'?'cr':'')+'"><td>'+a.time+'</td><td><span class="pill '+(a.pr=='Critical'?'':'m')+'">'+a.pr+'</span></td><td>'+pid(a.n)+'</td><td>'+a.room+'</td><td>'+a.cat+'</td><td>'+a.why+'</td><td><span class="pill '+(a.ak?'a':'')+'">'+(a.ak?'Acknowledged':'Active')+'</span></td><td><a class="btn" href="#patient-'+a.n+'">Patient</a> '+(a.ak?'':'<button class="btn" data-a="'+a.id+'">Acknowledge</button>')+'</td></tr>'});
+ $('at').innerHTML=t||'<tr><td colspan="8">No alerts. Use “Trigger Demo Alert” on Overview.</td></tr>';
+ if(ar=='analytics')analytics();if(ar=='devices')devs();if(ar=='notifications')notes();if(ar=='patient')panel();
+ var mg=$('mg');if(mg.children.length!=N){mg.innerHTML=P.map(function(p,i){return '<span style="animation-delay:'+i*25+'ms"></span>'}).join('')}P.forEach(function(p,i){mg.children[i].className=p.st});
+ $('hs').innerHTML='<div><b>'+N+'</b>patients</div><div><b>'+c.g+'</b>stable</div><div><b style="color:var(--r)">'+c.r+'</b>critical</div><div><b>'+c.x+'</b>offline</div><div style="align-self:center">Live demo snapshot<br>synthetic data</div>';tr()}
+function analytics(){var c={g:0,y:0,r:0,x:0},cats={};P.forEach(function(p){c[p.st]++});A.forEach(function(a){cats[a.cat]=(cats[a.cat]||0)+1});
+ var stk='';['g','y','r','x'].forEach(function(k){stk+='<i style="width:'+c[k]/N*100+'%;background:'+COL[k]+'"></i>'});
+ var mx=Math.max.apply(null,[1].concat(Object.keys(cats).map(function(k){return cats[k]}))),hb='';['Heart Rate','Low SpO₂','Possible Fall','Device Disconnected'].forEach(function(k){var v=cats[k]||0;hb+='<div class="hb"><span>'+k+'</span><i style="width:'+v/mx*160+'px"></i><b>'+v+'</b></div>'});
+ $('an').innerHTML='<div class="panel"><h3>Patient status distribution</h3><div class="stk">'+stk+'</div>'+['g','y','r','x'].map(function(k){return '<i class="dt '+k+'"></i>'+LBL[k]+' '+c[k]+' &nbsp;'}).join('')+'</div>'+
+ '<div class="panel"><h3>Alert frequency ('+A.length+' total)</h3>'+hb+'</div>'+
+ '<div class="panel"><h3>Average heart rate (bpm), last '+H+' updates</h3>'+chart(AH,'#1fb5ad',50,110)+'</div>'+
+ '<div class="panel"><h3>Average SpO₂ (%), last '+H+' updates</h3>'+chart(SH,'#4c7fb8',90,100)+'</div>'+
+ '<div class="panel"><h3>Device connectivity: '+Math.round(OH[OH.length-1]||100)+'% online</h3>'+chart(OH,'#1f9d6a',80,100)+'</div>'+
+ '<div class="panel"><h3>Historical monitoring data</h3><p style="margin:0;color:var(--mut)">Session history covers the last '+H+' updates of synthetic data. Nothing is stored after you close the page.</p></div>'}
+function panel(){var p=P[open-1],ra=A.filter(function(a){return a.n==p.n}).slice(0,5),al=p.al&&!p.al.ak;
+ $('pp').innerHTML='<div class="bar"><a class="btn" href="#monitoring">← Back to monitoring</a><h2 style="margin:0">Patient '+pid(p.n)+' · Room '+p.room+'</h2></div><p><i class="dt '+p.st+'"></i><b>'+LBL[p.st]+'</b> — '+p.why+'</p>'+
+ '<div class="kv"><div>Heart rate<b>'+(p.off?'—':Math.round(p.hr)+' bpm')+'</b></div><div>SpO₂<b>'+(p.off?'—':Math.round(p.sp)+'%')+'</b></div><div>Movement<b style="font-size:15px">'+(p.off?'—':mvl(p))+'</b></div><div>Device CL-'+(1000+p.n)+'<b style="font-size:15px">'+(p.off?'Offline':'Connected')+'</b></div><div>Battery · last sync<b style="font-size:15px">'+Math.round(p.bat)+'% · '+(p.off?ago(p):'just now')+'</b></div></div>'+
+ '<h3>Heart rate</h3>'+chart(p.hh,COL[p.st],40,150)+'<h3 style="margin-top:10px">SpO₂</h3>'+chart(p.sh,'#4c7fb8',80,100)+
+ '<h3 style="margin-top:10px">Movement timeline</h3><svg viewBox="0 0 60 20" preserveAspectRatio="none">'+p.mh.map(function(m,i){return '<rect x="'+i+'" y="'+(20-m*20)+'" width=".8" height="'+m*20+'" fill="#1fb5ad"/>'}).join('')+'</svg>'+
+ '<h3 style="margin-top:10px">Recent alerts</h3>'+(ra.length?ra.map(function(a){return '<div>'+a.time+' · '+a.cat+' · '+(a.ak?'Acknowledged':'Active')+'</div>'}).join(''):'<div>None</div>')+
+ '<div class="bar" style="margin-top:14px">'+(al?'<button class="btn d" id="ak">Acknowledge alert</button>':'')+'</div><div class="ds">Synthetic data. Not for clinical use.</div>'}
+function ack(id){A.forEach(function(a){if(a.id==id){a.ak=true;P[a.n-1].ak=true}});render()}
+function beep(){if(!sound)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();[0,.22].forEach(function(d){var o=ac.createOscillator(),g=ac.createGain();o.frequency.value=880;g.gain.value=.1;o.connect(g);g.connect(ac.destination);o.start(ac.currentTime+d);o.stop(ac.currentTime+d+.14)})}catch(e){}}
+setInterval(function(){if(run&&A.some(function(a){return !a.ak}))beep()},2500);
+function trigger(){var f=P.filter(function(p){return !p.sc&&!p.off&&p.st=='g'});if(!f.length)return;var p=open&&P[open-1].st=='g'&&!P[open-1].sc?P[open-1]:f[Math.floor(Math.random()*f.length)];p.sc=$('sc').value;p.t=0;p.rc=0;p.ak=false;tick()}
+function loop(){clearInterval(iv);iv=setInterval(function(){if(run)tick()},+$('si').value)}
+function open_(e){var b=e.target.closest('[data-i]');if(b){location.hash='#patient-'+b.dataset.i}}
+$('gd').addEventListener('click',open_);$('lt').addEventListener('click',open_);$('mt').addEventListener('click',open_);
+$('pp').addEventListener('click',function(e){if(e.target.id=='ak'&&P[open-1].al)ack(P[open-1].al.id)});
+$('nl').addEventListener('click',function(e){var r=e.target.dataset.r;if(r){NT.forEach(function(x){if(x.id==r)x.rd=true});render()}});
+$('nra').onclick=function(){NT.forEach(function(x){x.rd=true});render()};$('dsy').onclick=function(){P.forEach(function(p){if(!p.off)p.ls=Date.now()});render()};
+$('pf').onclick=function(){location.hash='#settings'};$('sd').onchange=function(){$('dn').textContent=this.value};$('so2').onclick=function(){this.textContent='Signed out (demo only)'};
+$('cf').addEventListener('submit',function(e){e.preventDefault();$('ok').style.display='block';this.reset()});
+var FL=[['Wearable device','A connected device with heart rate, SpO₂ and motion sensors.'],['Data transmission','Readings are sent to the platform in near real time.'],['AI analysis','Demo rules compare readings with illustrative thresholds.'],['Nurse dashboard','All patients on one screen, with alerts and sound.'],['Staff response','The nurse acknowledges the alert and organizes help.']];
+FL.forEach(function(x,i){var b=document.createElement('button');b.textContent=(i+1)+'. '+x[0];b.className=i?'':'on';b.onclick=function(){[].forEach.call($('fl').children,function(k,j){k.className=j==i?'on':''});$('fd').textContent=x[1];tr()};$('fl').appendChild(b)});$('fd').textContent=FL[0][1];
+function ago(p){var t=Math.round((Date.now()-p.ls)/1000);return t<60?t+' s ago':Math.round(t/60)+' min ago'}
+function devs(){var off=P.filter(function(p){return p.off}).length;$('dsm').textContent=(N-off)+' of '+N+' devices connected · '+off+' offline';var h='<table><thead><tr><th>Device</th><th>Patient</th><th>Room</th><th>Status</th><th>Battery</th><th>Last sync</th><th></th></tr></thead><tbody>';P.forEach(function(p){var b=Math.round(p.bat);h+='<tr><td>CL-'+(1000+p.n)+'</td><td>'+pid(p.n)+'</td><td>'+p.room+'</td><td><i class="dt '+(p.off?'x':'g')+'"></i>'+(p.off?'Offline':'Connected')+'</td><td'+(b<20?' style="color:var(--r)"':'')+'>'+b+'%'+(b<20?' · low':'')+'</td><td>'+(p.off?ago(p):'just now')+'</td><td><a class="btn" href="#patient-'+p.n+'">Profile</a></td></tr>'});$('dt').innerHTML=h+'</tbody></table>'}
+function notes(){var u=NT.filter(function(x){return !x.rd}).length;$('nsm').textContent=u+' unread · '+NT.length+' total';$('nl').innerHTML=NT.map(function(x){return '<div class="ft'+(x.rd?'':' un')+'"><span>'+(x.rd?'':'<b>● </b>')+x.t+'<br><small style="color:var(--mut)">'+x.time+'</small></span><a class="btn" href="#patient-'+x.n+'">View patient</a>'+(x.rd?'':'<button class="btn" data-r="'+x.id+'">Mark as read</button>')+'</div>'}).join('')||'<div class="ft">No notifications yet. Trigger a demo alert on the Dashboard.</div>'}
+$('ban').addEventListener('click',function(e){if(e.target.id=='ba')A.forEach(function(a){if(!a.ak)ack(a.id)})});
+$('at').addEventListener('click',function(e){var a=e.target.dataset.a;if(a)ack(a)});
+$('tb').addEventListener('click',function(e){var f=e.target.dataset.f;if(f==null)return;afl=f;[].forEach.call($('tb').children,function(b){b.className=b.dataset.f==f?'on':''});render()});
+$('bell').onclick=function(){location.hash='#notifications'};
+$('bt').onclick=trigger;$('bs').onclick=function(){run=true};$('bp').onclick=function(){run=false};$('br').onclick=reset;
+$('vw').onclick=function(){list=!list;this.textContent=list?'Grid view':'List view';render()};
+['q','fs','so'].forEach(function(i){$(i).addEventListener('input',render)});
+$('q').addEventListener('input',function(){if(['overview','monitoring'].indexOf(ar)<0)location.hash='#monitoring'});
+$('ss').onchange=function(){sound=this.checked;if(sound)beep()};$('sb').onchange=function(){banOn=this.checked;render()};
+$('sth').onchange=function(){if(this.value)document.documentElement.setAttribute('data-theme',this.value);else document.documentElement.removeAttribute('data-theme')};
+$('scd').onchange=function(){document.body.className=this.checked?'compact':''};
+$('si').onchange=loop;
+$('sn').oninput=function(){$('un').textContent=this.value||'Nurse Administrator';$('pf').textContent=(this.value||'NA').split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase()};
+setInterval(function(){if($('sa').checked&&run)trigger()},45000);
+var PUB=['home','how','tech','contact'],APP=['overview','monitoring','alerts','analytics','devices','notifications','settings'];
+function route(){var h=location.hash.slice(1)||'home',m=h.match(/^patient-(\d+)$/);open=null;
+ if(m&&+m[1]>=1&&+m[1]<=N){open=+m[1];h='patient'}else if(m)h='monitoring';
+ var pub=PUB.indexOf(h)>=0;if(!pub&&h!='patient'&&APP.indexOf(h)<0){h='home';pub=true}
+ ar=h;$('pub').style.display=pub?'block':'none';$('app').style.display=pub?'none':'grid';
+ PUB.forEach(function(k){$('u-'+k).style.display=k==h?'block':'none';$('q-'+k).className=(k==h?'on ':'')+'h'});
+ APP.concat('patient').forEach(function(k){$('p-'+k).className='pg'+(k==h?' on':'');var n=$('n-'+k);if(n)n.className=(k==h||(h=='patient'&&k=='monitoring'))?'on':''});
+ if(h=='analytics')analytics();if(h=='devices')devs();if(h=='notifications')notes();if(h=='patient')panel();
+ (pub?$('pub'):document.querySelector('main')).scrollTop=0;if(h=='home')intro()}
+
+var LANG='en',LOC={en:'en-GB',ru:'ru-RU',kk:'kk-KZ'},DR={},MEMO={};
+try{LANG=localStorage.getItem('cl_lang')||(navigator.language||'en').slice(0,2)}catch(e){}if(!LOC[LANG])LANG='en';
+var RAW=`Home|Главная|Басты бет
+How It Works|Как это работает|Бұл қалай жұмыс істейді
+How it works|Как это работает|Бұл қалай жұмыс істейді
+Technology|Технологии|Технология
+Contact|Контакты|Байланыс
+Open Dashboard|Открыть панель|Панельді ашу
+Dashboard|Панель|Панель
+Patient Monitoring|Мониторинг пациентов|Науқастар мониторингі
+Alert Center|Центр тревог|Дабыл орталығы
+Analytics|Аналитика|Талдау
+Devices|Устройства|Құрылғылар
+Notifications|Уведомления|Хабарламалар
+Settings|Настройки|Баптаулар
+Website|Сайт|Сайт
+Language|Язык|Тіл
+DEMO MODE|ДЕМО-РЕЖИМ|ДЕМО РЕЖИМ
+Synthetic data|Синтетические данные|Синтетикалық деректер
+synthetic data|синтетические данные|синтетикалық деректер
+Nurse Administrator|Старшая медсестра|Аға мейірбике
+General Ward|Общее отделение|Жалпы бөлім
+ICU|Реанимация|Реанимация
+Cardiology|Кардиология|Кардиология
+Hospital Monitoring Center|Центр мониторинга больницы|Аурухана мониторинг орталығы
+Search patient ID or room|Поиск по номеру пациента или палаты|Науқас нөмірі немесе палата бойынша іздеу
+Skip|Пропустить|Өткізіп жіберу
+One nurse.|Одна медсестра.|Бір мейірбике.
+Dozens of patients.|Десятки пациентов.|Ондаған науқас.
+Every second matters.|Важна каждая секунда.|Әр секунд маңызды.
+HOSPITAL MONITORING PLATFORM|ПЛАТФОРМА МОНИТОРИНГА ДЛЯ БОЛЬНИЦ|АУРУХАНАҒА АРНАЛҒАН МОНИТОРИНГ ПЛАТФОРМАСЫ
+Every Patient. Every Second.|Каждый пациент. Каждую секунду.|Әр науқас. Әр секунд.
+CARE LINK helps hospital teams watch many patients from one screen, notice potentially risky changes in vital signs, and organize a faster response.|CARE LINK помогает врачам и медсёстрам следить за многими пациентами с одного экрана, замечать опасные изменения показателей и быстрее организовывать помощь.|CARE LINK дәрігерлер мен мейірбикелерге көп науқасты бір экраннан бақылауға, көрсеткіштердегі қауіпті өзгерістерді байқауға және көмекті тезірек ұйымдастыруға көмектеседі.
+Open live dashboard|Открыть живую панель|Тірі панельді ашу
+Request a pilot|Заявка на пилот|Пилотқа өтінім
+Request a Pilot|Отправить заявку|Өтінім жіберу
+▶ Replay intro|▶ Повторить вступление|▶ Кіріспені қайта көрсету
+LIVE|В ЭФИРЕ|ТІКЕЛЕЙ
+What staff get|Что получает персонал|Қызметкерлер не алады
+One screen, 40 patients|Один экран, 40 пациентов|Бір экран, 40 науқас
+Heart rate, SpO₂, movement and device status for every patient, with colors for stable, attention, critical and offline.|Пульс, SpO₂, движение и состояние устройства каждого пациента. Цвета: стабильно, внимание, критично, офлайн.|Әр науқастың пульсі, SpO₂, қозғалысы және құрылғы күйі. Түстер: тұрақты, назар, маңызды, желіден тыс.
+Alerts with a reason|Тревоги с причиной|Себебі көрсетілген дабылдар
+A visual banner and a sound show the patient, the room and why the alert fired. The nurse acknowledges it, and it stays in the history.|Баннер и звук показывают пациента, палату и причину тревоги. Медсестра подтверждает её, и она остаётся в истории.|Баннер мен дыбыс науқасты, палатаны және дабыл себебін көрсетеді. Мейірбике растайды, ол тарихта сақталады.
+Patient profiles|Профили пациентов|Науқас профильдері
+Heart rate and SpO₂ charts, a movement timeline, device status and alert history for each patient.|Графики пульса и SpO₂, лента движения, статус устройства и история тревог по каждому пациенту.|Әр науқас бойынша пульс және SpO₂ графиктері, қозғалыс жолағы, құрылғы күйі және дабыл тарихы.
+Device overview|Обзор устройств|Құрылғыларға шолу
+See each wearable, its connection, battery and last synchronization.|Видно каждый браслет, связь, заряд и последнюю синхронизацию.|Әр білезікті, байланысын, зарядын және соңғы синхрондауын көресіз.
+Try it now|Попробуйте сейчас|Қазір байқап көріңіз
+The dashboard runs a live simulation. Start a scenario, such as a possible fall, and watch every page update.|Панель работает в режиме живой симуляции. Запустите сценарий, например возможное падение, и смотрите, как обновляются все страницы.|Панель тірі симуляция режимінде жұмыс істейді. Мысалы, құлау сценарийін іске қосып, барлық беттің жаңарғанын көріңіз.
+Live demo snapshot|Живой демо-срез|Тірі демо көрінісі
+patients|пациентов|науқас
+stable|стабильных|тұрақты
+critical|критичных|маңызды
+offline|офлайн|желіден тыс
+Four steps from the patient’s wrist to the nurse’s screen.|Четыре шага от руки пациента до экрана медсестры.|Науқастың білегінен мейірбике экранына дейінгі төрт қадам.
+1. Patient wears a device|1. Пациент надевает устройство|1. Науқас құрылғыны тағады
+A connected wearable is assigned to the patient.|Пациенту выдают подключённый браслет.|Науқасқа қосылған білезік беріледі.
+2. Data is collected|2. Собираются данные|2. Деректер жиналады
+Heart rate, SpO₂ and movement.|Пульс, SpO₂ и движение.|Пульс, SpO₂ және қозғалыс.
+3. CARE LINK analyzes|3. CARE LINK анализирует|3. CARE LINK талдайды
+The platform checks incoming data against demo thresholds and motion patterns.|Платформа сравнивает данные с демо-порогами и движением.|Платформа деректерді демо шектермен және қозғалыспен салыстырады.
+4. Staff are alerted|4. Персонал получает тревогу|4. Қызметкерлерге дабыл беріледі
+Visual and audio alerts appear for potentially dangerous changes.|При опасных изменениях появляются визуальный и звуковой сигналы.|Қауіпті өзгерістер болса, көрнекі және дыбыстық дабыл шығады.
+System architecture|Архитектура системы|Жүйе архитектурасы
+Wearable device|Носимое устройство|Тағылатын құрылғы
+Data transmission|Передача данных|Деректерді жіберу
+AI analysis|AI-анализ|AI талдау
+Nurse dashboard|Панель медсестры|Мейірбике панелі
+Staff response|Реакция персонала|Қызметкерлер әрекеті
+Glucose monitoring may be added in the future through compatible CGM devices.|Контроль глюкозы можно добавить позже через совместимые CGM-датчики.|Глюкоза мониторингін кейін үйлесімді CGM құрылғылары арқылы қосуға болады.
+See it in the dashboard|Смотреть в панели|Панельде көру
+What sits behind the demo.|Что стоит за демо.|Демоның артында не тұр.
+Wearable sensor integration|Подключение носимых датчиков|Тағылатын сенсорларды қосу
+Real-time visualization|Визуализация в реальном времени|Нақты уақыттағы визуализация
+AI-assisted anomaly detection|Поиск аномалий с помощью AI|AI көмегімен ауытқуларды іздеу
+Movement and fall-event monitoring|Контроль движения и падений|Қозғалыс пен құлауды бақылау
+Centralized patient management|Единое управление пациентами|Науқастарды бір жерден басқару
+Historical data tracking|История данных|Деректер тарихы
+Tell us about your hospital. This form is a demo: nothing is sent.|Расскажите о вашей больнице. Это демо-форма: ничего не отправляется.|Ауруханаңыз туралы айтыңыз. Бұл демо форма: ештеңе жіберілмейді.
+Full name|ФИО|Аты-жөні
+Hospital / organization|Больница / организация|Аурухана / ұйым
+Professional role|Должность|Қызметі
+Work email|Рабочий email|Жұмыс email
+Phone|Телефон|Телефон
+Message|Сообщение|Хабарлама
+Thank you! Your demo request was recorded on this page only.|Спасибо! Заявка сохранена только на этой странице.|Рахмет! Өтінім тек осы бетте сақталды.
+CARE LINK is a demonstration prototype using synthetic patient data. It is not intended for clinical use, medical diagnosis, or emergency response. Demonstration thresholds and scenarios are illustrative only.|CARE LINK — демонстрационный прототип на синтетических данных пациентов. Он не предназначен для клинического применения, диагностики или экстренной помощи. Демо-пороги и сценарии носят иллюстративный характер.|CARE LINK — синтетикалық науқас деректеріндегі демонстрациялық прототип. Ол клиникалық қолдануға, диагноз қоюға немесе шұғыл көмекке арналмаған. Демо шектер мен сценарийлер тек көрнекілік үшін.
+CARE LINK uses synthetic data only. It is not validated for clinical use, diagnosis, or emergency response. Thresholds and scenarios are illustrative.|CARE LINK использует только синтетические данные. Не проверен для клинического применения, диагностики или экстренной помощи. Пороги и сценарии условные.|CARE LINK тек синтетикалық деректерді қолданады. Клиникалық қолдануға, диагноз қоюға немесе шұғыл көмекке тексерілмеген. Шектер мен сценарийлер шартты.
+Total patients|Всего пациентов|Барлық науқас
+Stable|Стабильно|Тұрақты
+Attention required|Требуют внимания|Назар аударуды қажет етеді
+Critical alerts|Критические тревоги|Маңызды дабылдар
+Offline devices|Устройства офлайн|Желіден тыс құрылғылар
+SIMULATION|СИМУЛЯЦИЯ|СИМУЛЯЦИЯ
+Start|Старт|Бастау
+Pause|Пауза|Үзіліс
+Reset|Сброс|Қайта бастау
+Elevated Heart Rate|Высокий пульс|Жоғары пульс
+Low SpO₂|Низкий SpO₂|Төмен SpO₂
+Possible Fall Event|Возможное падение|Құлау мүмкін
+Device Disconnected|Устройство отключено|Құрылғы ажыратылды
+Trigger Demo Alert|Запустить демо-тревогу|Демо дабылды іске қосу
+All statuses|Все статусы|Барлық күйлер
+Attention|Внимание|Назар
+Critical|Критично|Маңызды
+Offline|Офлайн|Желіден тыс
+Sort: ID|Сортировка: ID|Сұрыптау: ID
+List view|Список|Тізім
+Grid view|Сетка|Тор
+No patients match.|Пациенты не найдены.|Науқас табылмады.
+bpm|уд/мин|соғу/мин
+No data|Нет данных|Дерек жоқ
+Rm|Пал.|Пал.
+Connected|Подключено|Қосылған
+No movement|Нет движения|Қозғалыс жоқ
+Light motion|Лёгкое движение|Жеңіл қозғалыс
+Resting|Покой|Тыныш
+Active|Активно|Белсенді
+CRITICAL|КРИТИЧНО|МАҢЫЗДЫ
+Acknowledge|Подтвердить|Растау
+Acknowledged|Подтверждено|Расталды
+more|ещё|тағы
+Patient|Пациент|Науқас
+Room|Палата|Палата
+Device disconnected|Устройство отключено|Құрылғы ажыратылды
+Possible fall: sudden motion, then no movement|Возможное падение: резкое движение, затем неподвижность|Құлау мүмкін: күрт қозғалыс, содан соң қозғалыссыздық
+SpO₂ below demo threshold|SpO₂ ниже демо-порога|SpO₂ демо шектен төмен
+Heart rate above demo threshold|Пульс выше демо-порога|Пульс демо шектен жоғары
+Heart rate below demo threshold|Пульс ниже демо-порога|Пульс демо шектен төмен
+SpO₂ trending low|SpO₂ снижается|SpO₂ төмендеуде
+Heart rate elevated|Пульс повышен|Пульс жоғары
+Heart rate low|Пульс понижен|Пульс төмен
+Within demo range|В пределах демо-нормы|Демо нормада
+Heart Rate|Пульс|Пульс
+Heart rate|Пульс|Пульс
+Possible Fall|Возможное падение|Құлау мүмкін
+Medium|Средний|Орташа
+Status|Статус|Күйі
+HR|Пульс|Пульс
+Movement|Движение|Қозғалыс
+Device|Устройство|Құрылғы
+Trend|Тренд|Тренд
+Time|Время|Уақыт
+Priority|Приоритет|Басымдық
+Category|Категория|Санат
+Reason|Причина|Себебі
+All|Все|Барлығы
+No alerts. Use “Trigger Demo Alert” on Overview.|Тревог нет. Нажмите «Запустить демо-тревогу» на панели.|Дабыл жоқ. Панельде «Демо дабылды іске қосу» басыңыз.
+Patient status distribution|Распределение статусов|Күйлер бөлінісі
+Alert frequency|Частота тревог|Дабыл жиілігі
+total|всего|барлығы
+Average heart rate (bpm)|Средний пульс (уд/мин)|Орташа пульс (соғу/мин)
+Average SpO₂ (%)|Средний SpO₂ (%)|Орташа SpO₂ (%)
+last|последние|соңғы
+updates|обновлений|жаңарту
+Device connectivity|Связь устройств|Құрылғы байланысы
+online|на связи|желіде
+Historical monitoring data|История мониторинга|Мониторинг тарихы
+Session history covers the last 60 updates of synthetic data. Nothing is stored after you close the page.|История сессии — последние 60 обновлений синтетических данных. После закрытия страницы ничего не сохраняется.|Сессия тарихы — синтетикалық деректердің соңғы 60 жаңартуы. Бетті жапқаннан кейін ештеңе сақталмайды.
+← Back to monitoring|← Назад к мониторингу|← Мониторингке оралу
+Battery · last sync|Заряд · синхронизация|Заряд · синхрондау
+Movement timeline|Лента движения|Қозғалыс жолағы
+Recent alerts|Последние тревоги|Соңғы дабылдар
+None|Нет|Жоқ
+Acknowledge alert|Подтвердить тревогу|Дабылды растау
+Synthetic data. Not for clinical use.|Синтетические данные. Не для клинического применения.|Синтетикалық деректер. Клиникалық қолдануға арналмаған.
+just now|только что|жаңа ғана
+s ago|с назад|с бұрын
+min ago|мин назад|мин бұрын
+Device Management|Управление устройствами|Құрылғыларды басқару
+Sync all devices|Синхронизировать все|Барлығын синхрондау
+devices connected|устройств на связи|құрылғы қосулы
+of|из|/
+Battery|Заряд|Заряд
+Last sync|Посл. синхронизация|Соңғы синхрондау
+Profile|Профиль|Профиль
+low|низкий|төмен
+Mark all as read|Прочитать все|Барлығын оқылды деп белгілеу
+Mark as read|Прочитано|Оқылды деп белгілеу
+View patient|Открыть пациента|Науқасты ашу
+unread|непрочитанных|оқылмаған
+No notifications yet. Trigger a demo alert on the Dashboard.|Уведомлений пока нет. Запустите демо-тревогу на панели.|Хабарлама әлі жоқ. Панельде демо дабылды іске қосыңыз.
+User profile|Профиль пользователя|Пайдаланушы профилі
+Display name|Имя|Аты
+Role|Роль|Рөлі
+Department|Отделение|Бөлім
+Account|Аккаунт|Аккаунт
+Sign out (demo)|Выйти (демо)|Шығу (демо)
+Signed out (demo only)|Вы вышли (только демо)|Шықтыңыз (тек демо)
+Show alert banner|Показывать баннер тревог|Дабыл баннерін көрсету
+Sound|Звук|Дыбыс
+Alert sound|Звук тревоги|Дабыл дыбысы
+Display|Экран|Көрініс
+Theme|Тема|Тақырып
+System|Системная|Жүйелік
+Light|Светлая|Ашық
+Dark|Тёмная|Қараңғы
+Compact density|Компактный вид|Ықшам көрініс
+Demo|Демо|Демо
+Update interval|Интервал обновления|Жаңарту аралығы
+Auto-trigger alerts every 45 s|Автозапуск тревог каждые 45 с|Дабылды әр 45 с сайын автоіске қосу`;
+['ru','kk'].forEach(function(l,li){DR[l]=RAW.split('\n').map(function(r){var a=r.split('|');return [a[0],a[li+1]]}).filter(function(p){return p[1]}).sort(function(a,b){return b[0].length-a[0].length}).map(function(p){return [new RegExp('(?<![A-Za-z])'+p[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![A-Za-z])','g'),p[1]]})});
+function T(s){if(LANG=='en'||!/[A-Za-z]/.test(s))return s;var m=MEMO[LANG]||(MEMO[LANG]={});if(m[s]!=null)return m[s];var r=s;DR[LANG].forEach(function(p){r=r.replace(p[0],p[1])});return m[s]=r}
+function tr(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n,v,t;while(n=w.nextNode()){if(/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName))continue;v=n.nodeValue;if(n.__o===undefined||v!==n.__t)n.__o=v;t=T(n.__o);n.__t=t;if(t!==v)n.nodeValue=t}
+ document.querySelectorAll('[placeholder],[aria-label]').forEach(function(e){['placeholder','aria-label'].forEach(function(a){var v=e.getAttribute(a);if(v==null)return;var k='_o'+a;if(e[k]===undefined||v!==e['_t'+a])e[k]=v;var t=T(e[k]);e['_t'+a]=t;if(t!==v)e.setAttribute(a,t)})})}
+function setLang(l){LANG=l;document.documentElement.lang=l=='kk'?'kk':l;$('lg').value=$('lg2').value=l;try{localStorage.setItem('cl_lang',l)}catch(e){}tr()}
+$('lg').onchange=$('lg2').onchange=function(){setLang(this.value)};$('lg').value=$('lg2').value=LANG;document.documentElement.lang=LANG;
+var introDone=matchMedia('(prefers-reduced-motion:reduce)').matches,tm=[];
+function endIntro(){tm.forEach(clearTimeout);tm=[];var el=$('intro');el.className='out';setTimeout(function(){if(el.className=='out')el.className=''},700)}
+function intro(){if(introDone)return;introDone=true;var el=$('intro'),il=$('il'),t=400;el.className='on';
+ ['One nurse.','Dozens of patients.','Every second matters.'].forEach(function(x,i){tm.push(setTimeout(function(){il.innerHTML='<span>'+x+'</span>';tr();if(i==2)el.className='on al'},t));t+=1900});
+ tm.push(setTimeout(function(){il.innerHTML='<span class="lgo">CARE<i>LINK</i></span><small>Every Patient. Every Second.</small>';tr();el.className='on'},t));t+=2600;tm.push(setTimeout(endIntro,t))}
+$('sk').onclick=endIntro;$('rp').onclick=function(){introDone=false;intro()};
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{root:$('pub'),threshold:.12});document.querySelectorAll('#pub .rw,#pub .hs,#pub .pw h2,#pub .fm,#pub .fl').forEach(function(el){el.classList.add('rv');io.observe(el)})}
+addEventListener('hashchange',route);
+function clk(){var d=new Date();$('clk').textContent=d.toLocaleDateString(LOC[LANG],{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString()}
+setInterval(clk,1000);clk();reset();route();loop();
+})();
+</script></body></html>
